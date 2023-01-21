@@ -1,0 +1,4 @@
+.pytest_cache
+calculator_log
+allure-results
+venv
