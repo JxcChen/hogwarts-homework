@@ -17,13 +17,15 @@ class LoggerUtils:
     @classmethod
     def get_logger(cls, name, package_name):
         logger = logging.getLogger(name)
+        if logger.handlers:
+            return logger
         logger.setLevel(logging.DEBUG)
         time_format = '%Y%m%d'
         now_string = time.strftime(time_format, time.localtime(time.time()))
         file_name = 'log_{}.log'.format(now_string)
         # os.chdir(workdir)
         root_path = os.path.abspath(
-            os.path.join(cls.workdir, ".."))
+            os.path.join(cls.workdir, "../"))
         _folder_path = os.path.join(root_path, package_name)
         if not os.path.exists(_folder_path):
             os.mkdir(_folder_path)
